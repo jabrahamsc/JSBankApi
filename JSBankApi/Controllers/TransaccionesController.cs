@@ -19,16 +19,16 @@ namespace JSBankApi.Controllers
         }
 
         [HttpPost("deposito")]
-        public async Task<IActionResult> RealizarDeposito(int cuentaId, decimal monto)
+        public async Task<IActionResult> RealizarDeposito(string numeroCuenta, decimal monto)
         {
-            var transaccion = await _transaccionService.RealizarDeposito(cuentaId, monto);
+            var transaccion = await _transaccionService.RealizarDeposito(numeroCuenta, monto);
             return Ok(transaccion);
         }
 
         [HttpPost("retiro")]
-        public async Task<IActionResult> RealizarRetiro(int cuentaId, decimal monto)
+        public async Task<IActionResult> RealizarRetiro(string numeroCuenta, decimal monto)
         {
-            var transaccion = await _transaccionService.RealizarRetiro(cuentaId, monto);
+            var transaccion = await _transaccionService.RealizarRetiro(numeroCuenta, monto);
             return Ok(transaccion);
         }
 

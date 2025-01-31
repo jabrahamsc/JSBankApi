@@ -21,9 +21,10 @@ namespace JSBankApi.Infrastructure.Services
             _context = context;
         }
 
-        public async Task<Transaccion> RealizarDeposito(int cuentaId, decimal monto)
+        public async Task<Transaccion> RealizarDeposito(string numeroCuenta, decimal monto)
         {
-            var cuenta = await _context.CuentasBancarias.FindAsync(cuentaId);
+            var cuenta = await _context.CuentasBancarias
+                .FirstOrDefaultAsync(c => c.NumeroCuenta == numeroCuenta);
             if (cuenta == null)
                 throw new KeyNotFoundException("Cuenta no encontrada");
 
@@ -34,7 +35,7 @@ namespace JSBankApi.Infrastructure.Services
                 Tipo = "Deposito",
                 Monto = monto,
                 Fecha = DateTime.UtcNow,
-                CuentaBancariaId = cuentaId
+                CuentaBancariaId = cuenta.Id
             };
 
             _context.Transacciones.Add(transaccion);
@@ -43,9 +44,10 @@ namespace JSBankApi.Infrastructure.Services
             return transaccion;
         }
 
-        public async Task<Transaccion> RealizarRetiro(int cuentaId, decimal monto)
+        public async Task<Transaccion> RealizarRetiro(string numeroCuenta, decimal monto)
         {
-            var cuenta = await _context.CuentasBancarias.FindAsync(cuentaId);
+            var cuenta = await _context.CuentasBancarias
+                .FirstOrDefaultAsync(c => c.NumeroCuenta == numeroCuenta);
             if (cuenta == null)
                 throw new KeyNotFoundException("Cuenta no encontrada");
 
@@ -59,7 +61,7 @@ namespace JSBankApi.Infrastructure.Services
                 Tipo = "Retiro",
                 Monto = monto,
                 Fecha = DateTime.UtcNow,
-                CuentaBancariaId = cuentaId
+                CuentaBancariaId = cuenta.Id
             };
 
             _context.Transacciones.Add(transaccion);
