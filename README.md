@@ -9,10 +9,10 @@ Se espera el mismo pueda cumplir con los puntos claves y directivas solicitadas.
 
 ## Configuración del Proyecto
 1. Clonar el repositorio: https://github.com/jabrahamsc/JSBankApi.git
-2. Navegar a la carpeta del proyecto JSBankApi
+2. Navegar a la carpeta del proyecto JSBankApi desde su terminal
 3. Restaurar las dependencias: dotnet restore
 4. Ejecutar migraciones para crear la base de datos: dotnet ef database update
-5. Iniciar la aplicación
+5. Iniciar la aplicación: dotnet run
 
 Prueba de requisitos
 1. Puede crear perfiles de clientes con el endpoint de tipo POST: http://localhost:5174/api/clientes e introducciendo el siguiente json en el body como raw
